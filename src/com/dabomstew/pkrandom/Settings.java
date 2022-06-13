@@ -91,6 +91,8 @@ public class Settings {
 
     private AbilitiesMod abilitiesMod = AbilitiesMod.UNCHANGED;
     private boolean allowWonderGuard = true;
+    private boolean allowImposter = true;
+    private boolean allowInnardsOut = true;
     private boolean abilitiesFollowEvolutions;
     private boolean abilitiesFollowMegaEvolutions;
     private boolean banTrappingAbilities;
@@ -574,6 +576,9 @@ public class Settings {
                 pickupItemsMod == PickupItemsMod.UNCHANGED, banBadRandomPickupItems,
                 banIrregularAltFormes));
 
+        // 50 abilities byte 2
+        out.write(makeByteSelected(allowImposter, allowInnardsOut));
+
         try {
             byte[] romName = this.romName.getBytes("US-ASCII");
             out.write(romName.length);
@@ -858,6 +863,9 @@ public class Settings {
                 0));       // RANDOMIZE
         settings.setBanBadRandomPickupItems(restoreState(data[49], 2));
         settings.setBanIrregularAltFormes(restoreState(data[49], 3));
+
+        settings.setAllowImposter(restoreState(data[50], 0));
+        settings.setAllowInnardsOut(restoreState(data[50], 1));
 
         int romNameLength = data[LENGTH_OF_SETTINGS_DATA] & 0xFF;
         String romName = new String(data, LENGTH_OF_SETTINGS_DATA + 1, romNameLength, "US-ASCII");
@@ -1238,6 +1246,23 @@ public class Settings {
         this.allowWonderGuard = allowWonderGuard;
     }
 
+
+    public boolean isAllowImposter() {
+        return allowImposter;
+    }
+
+    public void setAllowImposter(boolean allowImposter) {
+        this.allowImposter = allowImposter;
+    }
+
+
+    public boolean isAllowInnardsOut() {
+        return allowInnardsOut;
+    }
+
+    public void setAllowInnardsOut(boolean allowInnardsOut) {
+        this.allowInnardsOut = allowInnardsOut;
+    }
     public boolean isAbilitiesFollowEvolutions() {
         return abilitiesFollowEvolutions;
     }

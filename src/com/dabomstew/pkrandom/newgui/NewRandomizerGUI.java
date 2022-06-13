@@ -77,6 +77,10 @@ public class NewRandomizerGUI {
     private JRadioButton paUnchangedRadioButton;
     private JRadioButton paRandomRadioButton;
     private JCheckBox paAllowWonderGuardCheckBox;
+
+    private JCheckBox paAllowImposterCheckBox;
+
+    private JCheckBox paAllowInnardsOutCheckBox;
     private JCheckBox paFollowEvolutionsCheckBox;
     private JCheckBox paTrappingAbilitiesCheckBox;
     private JCheckBox paNegativeAbilitiesCheckBox;
@@ -1342,6 +1346,8 @@ public class NewRandomizerGUI {
         paUnchangedRadioButton.setSelected(settings.getAbilitiesMod() == Settings.AbilitiesMod.UNCHANGED);
         paRandomRadioButton.setSelected(settings.getAbilitiesMod() == Settings.AbilitiesMod.RANDOMIZE);
         paAllowWonderGuardCheckBox.setSelected(settings.isAllowWonderGuard());
+        paAllowImposterCheckBox.setSelected(settings.isAllowImposter());
+        paAllowInnardsOutCheckBox.setSelected(settings.isAllowInnardsOut());
         paFollowEvolutionsCheckBox.setSelected(settings.isAbilitiesFollowEvolutions());
         paTrappingAbilitiesCheckBox.setSelected(settings.isBanTrappingAbilities());
         paNegativeAbilitiesCheckBox.setSelected(settings.isBanNegativeAbilities());
@@ -1586,6 +1592,8 @@ public class NewRandomizerGUI {
 
         settings.setAbilitiesMod(paUnchangedRadioButton.isSelected(), paRandomRadioButton.isSelected());
         settings.setAllowWonderGuard(paAllowWonderGuardCheckBox.isSelected());
+        settings.setAllowImposter(paAllowImposterCheckBox.isSelected());
+        settings.setAllowInnardsOut(paAllowInnardsOutCheckBox.isSelected());
         settings.setAbilitiesFollowEvolutions(paFollowEvolutionsCheckBox.isSelected());
         settings.setBanTrappingAbilities(paTrappingAbilitiesCheckBox.isSelected());
         settings.setBanNegativeAbilities(paNegativeAbilitiesCheckBox.isSelected());
@@ -1947,6 +1955,12 @@ public class NewRandomizerGUI {
         paAllowWonderGuardCheckBox.setVisible(true);
         paAllowWonderGuardCheckBox.setEnabled(false);
         paAllowWonderGuardCheckBox.setSelected(false);
+        paAllowImposterCheckBox.setVisible(true);
+        paAllowImposterCheckBox.setEnabled(false);
+        paAllowImposterCheckBox.setSelected(false);
+        paAllowInnardsOutCheckBox.setVisible(true);
+        paAllowInnardsOutCheckBox.setEnabled(false);
+        paAllowInnardsOutCheckBox.setSelected(false);
         paFollowEvolutionsCheckBox.setVisible(true);
         paFollowEvolutionsCheckBox.setEnabled(false);
         paFollowEvolutionsCheckBox.setSelected(false);
@@ -2572,6 +2586,9 @@ public class NewRandomizerGUI {
                 paBadAbilitiesCheckBox.setEnabled(false);
                 paFollowMegaEvosCheckBox.setVisible(romHandler.hasMegaEvolutions());
                 paWeighDuplicatesTogetherCheckBox.setEnabled(false);
+
+                paAllowImposterCheckBox.setVisible(pokemonGeneration >= 5);
+                paAllowInnardsOutCheckBox.setVisible(pokemonGeneration >= 7);
             } else {
                 pokemonAbilitiesPanel.setVisible(false);
             }
@@ -3019,9 +3036,15 @@ public class NewRandomizerGUI {
             paNegativeAbilitiesCheckBox.setEnabled(true);
             paBadAbilitiesCheckBox.setEnabled(true);
             paWeighDuplicatesTogetherCheckBox.setEnabled(true);
+            paAllowImposterCheckBox.setEnabled(true);
+            paAllowInnardsOutCheckBox.setEnabled(true);
         } else {
             paAllowWonderGuardCheckBox.setEnabled(false);
             paAllowWonderGuardCheckBox.setSelected(false);
+            paAllowImposterCheckBox.setEnabled(false);
+            paAllowImposterCheckBox.setSelected(false);
+            paAllowInnardsOutCheckBox.setEnabled(false);
+            paAllowInnardsOutCheckBox.setSelected(false);
             paFollowEvolutionsCheckBox.setEnabled(false);
             paFollowEvolutionsCheckBox.setSelected(false);
             paTrappingAbilitiesCheckBox.setEnabled(false);

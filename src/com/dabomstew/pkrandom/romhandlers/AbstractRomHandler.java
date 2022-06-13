@@ -503,6 +503,8 @@ public abstract class AbstractRomHandler implements RomHandler {
     public void randomizeAbilities(Settings settings) {
         boolean evolutionSanity = settings.isAbilitiesFollowEvolutions();
         boolean allowWonderGuard = settings.isAllowWonderGuard();
+        boolean allowImposter = settings.isAllowImposter();
+        boolean allowInnardsOut = settings.isAllowInnardsOut();
         boolean banTrappingAbilities = settings.isBanTrappingAbilities();
         boolean banNegativeAbilities = settings.isBanNegativeAbilities();
         boolean banBadAbilities = settings.isBanBadAbilities();
@@ -519,8 +521,18 @@ public abstract class AbstractRomHandler implements RomHandler {
 
         final List<Integer> bannedAbilities = this.getUselessAbilities();
 
+        bannedAbilities.add(Abilities.imposter);
+
         if (!allowWonderGuard) {
             bannedAbilities.add(Abilities.wonderGuard);
+        }
+
+        if (!allowImposter) {
+            bannedAbilities.add(Abilities.imposter);
+        }
+
+        if (!allowInnardsOut) {
+            bannedAbilities.add(Abilities.innardsOut);
         }
 
         if (banTrappingAbilities) {
@@ -590,10 +602,10 @@ public abstract class AbstractRomHandler implements RomHandler {
                     continue;
                 }
 
-                // Don't remove WG if already in place.
-                if (pk.ability1 != Abilities.wonderGuard
-                        && pk.ability2 != Abilities.wonderGuard
-                        && pk.ability3 != Abilities.wonderGuard) {
+                // Don't remove WG, Imposter, or Innards Out if already in place.
+                if (!GlobalConstants.lockedAbilities.contains(pk.ability1)
+                        && !GlobalConstants.lockedAbilities.contains(pk.ability2)
+                        && !GlobalConstants.lockedAbilities.contains(pk.ability3)) {
                     // Pick first ability
                     pk.ability1 = this.pickRandomAbility(maxAbility, bannedAbilities, weighDuplicatesTogether);
 

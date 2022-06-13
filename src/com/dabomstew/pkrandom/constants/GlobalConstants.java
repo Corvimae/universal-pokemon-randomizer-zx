@@ -198,6 +198,10 @@ public class GlobalConstants {
             Abilities.honeyGather, Abilities.auraBreak, Abilities.receiver, Abilities.powerOfAlchemy
     );
 
+    public static final List<Integer> lockedAbilities = Arrays.asList(
+            Abilities.wonderGuard, Abilities.imposter, Abilities.innardsOut
+    );
+
     public static final List<Integer> doubleBattleAbilities = Arrays.asList(
             Abilities.friendGuard, Abilities.healer, Abilities.telepathy, Abilities.symbiosis,
             Abilities.battery
