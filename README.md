@@ -4,6 +4,8 @@ With significant contributions from darkeye, cleartonic
 
 Based on the Universal Pokemon Randomizer by Dabomstew
 
+**This is a fork that adds Imposter to the Bad Ability list, for use in Gen 5+ Ironmon-style challenges.**
+
 # Info
 
 This fork was originally made to make some minor tweaks and fixes, but became a bit more ambitious since 2020. There are several new features and supported games (including 3DS games) compared to the original Universal Pokemon Randomizer.
